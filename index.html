@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMart - Your Perfect Pet Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-heart"></i>
+                <span>PetWorld</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#pets" class="nav-link">Pets</a>
+                <a href="#products" class="nav-link">Products</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Search pets, food..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="logout-btn" onclick="signOutUser()">
+  <i class="fas fa-sign-out-alt"></i> Logout
+</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Find Your Perfect <span class="highlight">Furry Friend</span></h1>
+                    <p>Discover healthy, happy pets and premium pet care products. Quality guaranteed with expert support for every pet parent.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="showSection('pets')">Browse Pets</button>
+                        <button class="btn-secondary" onclick="showSection('products')">Shop Products</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?w=800&h=600&fit=crop" alt="Happy family with pets">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterPets('dog')">
+                    <i class="fas fa-dog"></i>
+                    <h3>Dogs</h3>
+                    <p>150+ Breeds</p>
+                </div>
+                <div class="category-card" onclick="filterPets('cat')">
+                    <i class="fas fa-cat"></i>
+                    <h3>Cats</h3>
+                    <p>80+ Breeds</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('food')">
+                    <i class="fas fa-bone"></i>
+                    <h3>Food</h3>
+                    <p>Premium Nutrition</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('accessories')">
+                    <i class="fas fa-heart"></i>
+                    <h3>Accessories</h3>
+                    <p>Toys & More</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pets Section -->
+    <section id="pets" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Available Pets</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterPets('all')">All</button>
+                    <button class="filter-btn" onclick="filterPets('dog')">Dogs</button>
+                    <button class="filter-btn" onclick="filterPets('cat')">Cats</button>
+                </div>
+            </div>
+            <div id="petsGrid" class="pets-grid"></div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pet Products</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                    <button class="filter-btn" onclick="filterProducts('food')">Food</button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+                    <button class="filter-btn" onclick="filterProducts('toys')">Toys</button>
+                </div>
+            </div>
+            <div id="productsGrid" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag"></i> Shopping Cart</h3>
+            <button class="close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: <span id="cartTotal">₹0</span></span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-heart"></i>
+                        <span>PetWorld</span>
+                    </div>
+                    <p>Your trusted partner in finding the perfect pets and premium pet care products.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#pets">Browse Pets</a></li>
+                        <li><a href="#products">Pet Products</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> info@petworld.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vijayawada,Andhra Pradesh</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PetWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = 'https://nqbaglcrjycyszhnizyy.supabase.co';
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5xYmFnbGNyanljeXN6aG5penl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NDM5MjYsImV4cCI6MjA3MTUxOTkyNn0.482zwJ2PCLrtXXXApgUSfhq5C8RYiX2DaYeRZYBajSQ"; 
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  // ✅ Check session on page load
+  async function checkUser() {
+    const { data, error } = await supabase.auth.getSession();
+    if (!data.session) {
+      // no active session → go back to login
+      window.location.href = "login.html";
+    } else {
+      console.log("User logged in:", data.session.user.email);
+      // Optional: show logged-in email in footer
+      const footer = document.querySelector(".footer-bottom p");
+      footer.textContent = `Logged in as: ${data.session.user.email}`;
+    }
+  }
+  checkUser();
+
+  // ✅ Watch for logout or session expiry
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (!session) {
+      window.location.href = "login.html";
+    }
+  });
+
+  // ✅ Logout
+  async function signOutUser() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Logout failed:", error.message);
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+</script>
+</body>
+</html>
+
